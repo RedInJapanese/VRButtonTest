@@ -48,6 +48,17 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 camera.position.z = 10
 scene.add(camera)
 
+window.addEventListener('resize', () =>
+{
+
+    // Update camera
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+
+    // Update renderer
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
 // Renderer
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
