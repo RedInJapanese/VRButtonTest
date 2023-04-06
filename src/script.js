@@ -67,7 +67,12 @@ window.addEventListener('resize', () =>
 
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild( VRButton.createButton( renderer ) );
+renderer.xr.enabled = true;
+renderer.setAnimationLoop( function () {
 
+	renderer.render( scene, camera );
+
+} );
 //animations
 const clock = new THREE.Clock()
 var x = 0
