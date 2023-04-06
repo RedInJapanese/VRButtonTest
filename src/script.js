@@ -38,7 +38,7 @@ const widthSegments3 = 8;
 const heightSegments3 = 8;
 const geom3 = new THREE.SphereGeometry(radius3, widthSegments3, heightSegments3);
 const mat3 = new THREE.PointsMaterial({
-    color: 'yellow',
+    color: 'blue',
     size: 0.3,     // in world units
 });
 const points3 = new THREE.Points(geom3, mat3);
@@ -52,32 +52,11 @@ scene.add(camera)
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
-  
-window.addEventListener('resize', () =>
-{
-
-    // Update camera
-    camera.aspect = window.innerWidth / window.innerHeight
-    camera.updateProjectionMatrix()
-
-    // Update renderer
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-})
 
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
 renderer.setAnimationLoop( function () {
-
-	renderer.render( scene, camera );
-
-} );
-//animations
-const clock = new THREE.Clock()
-var x = 0
-var time = Date.now()
-function tick(){
 
     const current_time = Date.now()
     const delta_time = current_time-time
@@ -110,6 +89,15 @@ function tick(){
 
     renderer.render(scene, camera)
     window.requestAnimationFrame(tick) //passes in the tick function as an argument
+	renderer.render( scene, camera );
+
+} );
+//animations
+const clock = new THREE.Clock()
+var x = 0
+var time = Date.now()
+function tick(){
+
 }
 
 tick() 
