@@ -1,12 +1,18 @@
 import * as THREE from 'three'
 import { MeshDepthMaterial } from 'three'
 import { VRButton } from 'three/addons/webxr/VRButton.js'
+import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js'
+
+
+let controller1, controller2
+let cgrip1, crgrip2
+
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
-
+// scene.background = new THREE.Color('grey')
 // Object
 
 
@@ -63,10 +69,31 @@ window.addEventListener('resize', () =>
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
+controller1 = renderer.xr.getController(0)
+controller2 = renderer.xr.getController(1)
+
+scene.add(controller1)
+scene.add(controller2)
+
+const cmodfac = new XRControllerModelFactory()
+
+cgrip1 = renderer.xr.getControllerGrip(0)
+cgrip1.add(cmodfac.createControllerModel(cgrip1))
+scene.add(cgrip1)
 
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
+
+const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+
+const line = new THREE.Line( geometry );
+line.name = 'line';
+line.scale.z = 5;
+
+controller1.add( line.clone() );
+
+
 renderer.setAnimationLoop( function () {
 
     const current_time = Date.now()
