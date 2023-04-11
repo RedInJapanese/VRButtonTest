@@ -81,8 +81,12 @@ cgrip1 = renderer.xr.getControllerGrip(0)
 cgrip1.add(cmodfac.createControllerModel(cgrip1))
 scene.add(cgrip1)
 
+
+const g = new THREE.BoxGeometry(1, 1, 1)
+const m = new THREE.MeshBasicMaterial({color: 'black', wireframe: true})
+const msh = new THREE.Mesh(g, m)
 cgrip2 = renderer.xr.getControllerGrip(1)
-cgrip2.add(cmodfac.createControllerModel(cgrip2))
+cgrip2.add(msh)
 scene.add(cgrip2)
 
 renderer.setSize(window.innerWidth, window.innerHeight)
