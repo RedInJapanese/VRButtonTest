@@ -5,14 +5,14 @@ import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFa
 
 
 let controller1, controller2
-let cgrip1, crgrip2
+let cgrip1, cgrip2
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
-// scene.background = new THREE.Color('grey')
+scene.background = new THREE.Color('white')
 // Object
 
 
@@ -81,18 +81,23 @@ cgrip1 = renderer.xr.getControllerGrip(0)
 cgrip1.add(cmodfac.createControllerModel(cgrip1))
 scene.add(cgrip1)
 
+cgrip2 = renderer.xr.getControllerGrip(1)
+cgrip2.add(cmodfac.createControllerModel(cgrip2))
+scene.add(cgrip2)
+
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
 
 const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-const line = new THREE.Line( geometry );
+let line = new THREE.Line( geometry );
+line.material.color = new THREE.Color('red')
 line.name = 'line';
 line.scale.z = 5;
 
 controller1.add( line.clone() );
-
+controller2.add( line.clone() );
 
 renderer.setAnimationLoop( function () {
 
