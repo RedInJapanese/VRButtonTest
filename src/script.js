@@ -12,7 +12,7 @@ const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
-scene.background = new THREE.Color('white')
+// scene.background = new THREE.Color('white')
 // Object
 
 
@@ -83,7 +83,7 @@ scene.add(cgrip1)
 
 
 const g = new THREE.BoxGeometry(1, 1, 1)
-const m = new THREE.MeshBasicMaterial({color: 'black', wireframe: true})
+const m = new THREE.MeshBasicMaterial({color: 'white'})
 const msh = new THREE.Mesh(g, m)
 cgrip2 = renderer.xr.getControllerGrip(1)
 cgrip2.add(msh)
