@@ -82,7 +82,7 @@ cgrip1.add(cmodfac.createControllerModel(cgrip1))
 scene.add(cgrip1)
 
 
-const g = new THREE.BoxGeometry(1, 1, 1)
+const g = new THREE.BoxGeometry(0.1, 0.1, 0.1)
 const m = new THREE.MeshBasicMaterial({color: 'white'})
 const msh = new THREE.Mesh(g, m)
 cgrip2 = renderer.xr.getControllerGrip(1)
