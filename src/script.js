@@ -86,15 +86,9 @@ const g = new THREE.BoxGeometry(0.1, 0.1, 0.1)
 const m = new THREE.MeshBasicMaterial({color: 'black'})
 const msh = new THREE.Mesh(g, m)
 
-const ge = new THREE.SphereGeometry(0.15, 0.15, 0.15); 
-const ma = new THREE.MeshBasicMaterial( { color: 'red' } ); 
-const sp = new THREE.Mesh( ge, ma ); 
-
-sp.y+=100
 
 cgrip2 = renderer.xr.getControllerGrip(1)
 cgrip2.add(msh)
-cgrip2.add(sp)
 scene.add(cgrip2)
 
 renderer.setSize(window.innerWidth, window.innerHeight)
@@ -110,6 +104,14 @@ line.scale.z = 5;
 
 controller1.add( line.clone() );
 controller2.add( line.clone() );
+
+let ge = new THREE.BoxGeometry(0.15, 0.15, 0.15); 
+let ma = new THREE.MeshBasicMaterial( { color: 'yellow' } ); 
+let sp = new THREE.Mesh( ge, ma ); 
+
+sp.position.set(1, 0, 0)
+
+controller1.add(sp.clone())
 
 renderer.setAnimationLoop( function () {
 
